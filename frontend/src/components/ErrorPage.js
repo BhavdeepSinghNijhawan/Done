@@ -1,6 +1,7 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import React from 'react';
 import styled from 'styled-components';
-
 const ErrorPage = () => {
     return (
         <Container>
@@ -13,7 +14,6 @@ const ErrorPage = () => {
         </Container>
     );
 };
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -23,23 +23,19 @@ const Container = styled.div`
   color: white;
   background-image: url('https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
 `;
-
 const Content = styled.div`
   max-width: 800px;
   padding: 20px;
   text-align: center;
 `;
-
 const Heading = styled.h1`
   margin-bottom: 40px;
   font-size: 32px;
   font-weight: bold;
   color: rgb(77, 9, 9);
 `;
-
 const Text = styled.p`
   font-size: 18px;
   line-height: 1.5;
 `;
-
 export default ErrorPage;
