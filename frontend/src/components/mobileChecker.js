@@ -1,5 +1,6 @@
-const [isMobile, setIsMobile] = useState(false);
+//Author: Bhavdeep Singh Nijhawan
 
+const [isMobile, setIsMobile] = useState(false);
 useEffect(() => {
     const handleResize = () => {
         const isMobileDevice = window.matchMedia("(max-width: 768px)").matches;
@@ -11,7 +12,6 @@ useEffect(() => {
         window.removeEventListener("resize", handleResize);
     };
 }, []);
-
 {/* {
           isMobile ?
             <ActionMenu row={row} actions={actions} />
@@ -31,7 +31,6 @@ useEffect(() => {
               ))}
             </StyledSpeedDial>
         } */}
-
 const StyledSpeedDial = styled(SpeedDial)`
   .MuiSpeedDial-fab {
     background-color: #240439;
