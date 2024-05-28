@@ -1,7 +1,8 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import React, { useState } from 'react'
 import { StyledTableCell, StyledTableRow } from './styles';
 import { Table, TableBody, TableContainer, TableHead, TablePagination } from '@mui/material';
-
 const TableViewTemplate = ({ columns, rows }) => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
