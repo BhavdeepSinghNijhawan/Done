@@ -1,3 +1,5 @@
+//Author: Bhavdeep Singh Nijhawan
+
 export const calculateSubjectAttendancePercentage = (presentCount, totalSessions) => {
     if (totalSessions === 0 || presentCount === 0) {
         return 0;
@@ -5,16 +7,12 @@ export const calculateSubjectAttendancePercentage = (presentCount, totalSessions
     const percentage = (presentCount / totalSessions) * 100;
     return percentage.toFixed(2); // Limit to two decimal places
 };
-
-
 export const groupAttendanceBySubject = (subjectAttendance) => {
     const attendanceBySubject = {};
-
     subjectAttendance.forEach((attendance) => {
         const subName = attendance.subName.subName;
         const sessions = attendance.subName.sessions;
         const subId = attendance.subName._id;
-
         if (!attendanceBySubject[subName]) {
             attendanceBySubject[subName] = {
                 present: 0,
@@ -36,12 +34,10 @@ export const groupAttendanceBySubject = (subjectAttendance) => {
     });
     return attendanceBySubject;
 }
-
 export const calculateOverallAttendancePercentage = (subjectAttendance) => {
     let totalSessionsSum = 0;
     let presentCountSum = 0;
     const uniqueSubIds = [];
-
     subjectAttendance.forEach((attendance) => {
         const subId = attendance.subName._id;
         if (!uniqueSubIds.includes(subId)) {
@@ -51,10 +47,8 @@ export const calculateOverallAttendancePercentage = (subjectAttendance) => {
         }
         presentCountSum += attendance.status === "Present" ? 1 : 0;
     });
-
     if (totalSessionsSum === 0 || presentCountSum === 0) {
         return 0;
     }
-
     return (presentCountSum / totalSessionsSum) * 100;
 };
