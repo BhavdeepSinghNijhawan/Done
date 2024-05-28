@@ -1,16 +1,14 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import React, { useState } from 'react';
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 const AccountMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-
     const open = Boolean(anchorEl);
-
     const { currentRole, currentUser } = useSelector(state => state.user);
-
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -73,9 +71,7 @@ const AccountMenu = () => {
         </>
     );
 }
-
 export default AccountMenu
-
 const styles = {
     styledPaper: {
         overflow: 'visible',
