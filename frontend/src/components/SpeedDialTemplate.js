@@ -1,7 +1,8 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import React from 'react'
 import { SpeedDial, SpeedDialAction, styled } from '@mui/material';
 import TuneIcon from '@mui/icons-material/Tune';
-
 const SpeedDialTemplate = ({ actions }) => {
     return (
         <CustomSpeedDial
@@ -20,13 +21,10 @@ const SpeedDialTemplate = ({ actions }) => {
         </CustomSpeedDial>
     )
 }
-
 export default SpeedDialTemplate
-
 const CustomSpeedDial = styled(SpeedDial)`
   .MuiSpeedDial-fab {
     background-color: #032803;
-    
     &:hover {
       background-color: green;
     }
