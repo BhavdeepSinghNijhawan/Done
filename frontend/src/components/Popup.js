@@ -1,16 +1,15 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { underControl } from '../redux/userRelated/userSlice';
 import { underStudentControl } from '../redux/studentRelated/studentSlice';
 import MuiAlert from '@mui/material/Alert';
 import { Snackbar } from '@mui/material';
-
 const Popup = ({ message, setShowPopup, showPopup }) => {
     const dispatch = useDispatch();
-
     const vertical = "top"
     const horizontal = "right"
-
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -19,7 +18,6 @@ const Popup = ({ message, setShowPopup, showPopup }) => {
         dispatch(underControl())
         dispatch(underStudentControl())
     };
-
     return (
         <>
             <Snackbar open={showPopup} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical, horizontal }} key={vertical + horizontal}>
@@ -37,9 +35,7 @@ const Popup = ({ message, setShowPopup, showPopup }) => {
         </>
     );
 };
-
 export default Popup;
-
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
