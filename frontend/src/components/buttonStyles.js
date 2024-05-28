@@ -1,6 +1,7 @@
+//Author: Bhavdeep Singh Nijhawan
+
 import styled from 'styled-components';
 import { Button } from '@mui/material';
-
 export const RedButton = styled(Button)`
   && {
     background-color: #f00;
@@ -13,7 +14,6 @@ export const RedButton = styled(Button)`
     }
   }
 `;
-
 export const BlackButton = styled(Button)`
   && {
     background-color: #000000;
@@ -26,7 +26,6 @@ export const BlackButton = styled(Button)`
     }
   }
 `;
-
 export const DarkRedButton = styled(Button)`
   && {
     background-color: #650909;
@@ -38,7 +37,6 @@ export const DarkRedButton = styled(Button)`
     }
   }
 `;
-
 export const BlueButton = styled(Button)`
   && {
     background-color: #080a43;
@@ -48,7 +46,6 @@ export const BlueButton = styled(Button)`
     }
   }
 `;
-
 export const PurpleButton = styled(Button)`
   && {
     background-color: #270843;
@@ -58,7 +55,6 @@ export const PurpleButton = styled(Button)`
     }
   }
 `;
-
 export const LightPurpleButton = styled(Button)`
   && {
     background-color: #7f56da;
@@ -68,7 +64,6 @@ export const LightPurpleButton = styled(Button)`
     }
   }
 `;
-
 export const GreenButton = styled(Button)`
   && {
     background-color: #133104;
@@ -78,7 +73,6 @@ export const GreenButton = styled(Button)`
     }
   }
 `;
-
 export const BrownButton = styled(Button)`
   && {
     background-color: #2c1006;
@@ -90,7 +84,6 @@ export const BrownButton = styled(Button)`
     }
   }
 `;
-
 export const IndigoButton = styled(Button)`
   && {
     background-color: #2f2b80;
