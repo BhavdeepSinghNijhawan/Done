@@ -1,3 +1,5 @@
+// Author: Bhavdeep Singh Nijhawan
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
