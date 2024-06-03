@@ -1,3 +1,5 @@
+// Author: Bhavdeep Singh Nijhawan
+
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './userRelated/userSlice';
 import { studentReducer } from './studentRelated/studentSlice';
