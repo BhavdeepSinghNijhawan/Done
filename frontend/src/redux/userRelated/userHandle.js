@@ -1,3 +1,5 @@
+// Author: Bhavdeep Singh Nijhawan
+
 import axios from 'axios';
 import {
     authRequest,
