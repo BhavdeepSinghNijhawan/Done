@@ -1,20 +1,24 @@
-//Author: Bhavdeep Singh Nijhawan
+// Author: Bhavdeep Singh Nijhawan
 
 import React, { useState } from 'react';
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
 import { Settings, Logout } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
 const AccountMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const { currentRole, currentUser } = useSelector(state => state.user);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -48,9 +52,7 @@ const AccountMenu = () => {
             >
                 <MenuItem>
                     <Avatar />
-                    <Link to={`/${currentRole}/profile`}>
-                        Profile
-                    </Link>
+                    <Link to={`/${currentRole}/profile`}>Profile</Link>
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
@@ -63,15 +65,15 @@ const AccountMenu = () => {
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>
-                    <Link to="/logout">
-                        Logout
-                    </Link>
+                    <Link to="/logout">Logout</Link>
                 </MenuItem>
             </Menu>
         </>
     );
-}
-export default AccountMenu
+};
+
+export default AccountMenu;
+
 const styles = {
     styledPaper: {
         overflow: 'visible',
@@ -96,4 +98,4 @@ const styles = {
             zIndex: 0,
         },
     }
-}
+};
