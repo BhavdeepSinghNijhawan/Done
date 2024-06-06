@@ -1,14 +1,9 @@
-//Author: Bhavdeep Singh Nijhawan
+// Author: Bhavdeep Singh Nijhawan
 
-import {
-    TableCell,
-    TableRow,
-    styled,
-    tableCellClasses,
-    Drawer as MuiDrawer,
-    AppBar as MuiAppBar,
-} from "@mui/material";
-const drawerWidth = 240
+import { TableCell, TableRow, styled, tableCellClasses, Drawer as MuiDrawer, AppBar as MuiAppBar } from "@mui/material";
+
+const drawerWidth = 240;
+
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -18,6 +13,7 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
         fontSize: 14,
     },
 }));
+
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:nth-of-type(odd)': {
         backgroundColor: theme.palette.action.hover,
@@ -27,6 +23,7 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
         border: 0,
     },
 }));
+
 export const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -44,6 +41,7 @@ export const AppBar = styled(MuiAppBar, {
         }),
     }),
 }));
+
 export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
         '& .MuiDrawer-paper': {
