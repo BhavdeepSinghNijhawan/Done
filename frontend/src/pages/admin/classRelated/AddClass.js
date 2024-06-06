@@ -1,3 +1,5 @@
+// Author: Bhavdeep Singh Nijhawan
+
 import React, { useEffect, useState } from "react";
 import { Box, Button, CircularProgress, Stack, TextField } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
@@ -11,17 +13,15 @@ import styled from "styled-components";
 
 const AddClass = () => {
     const [sclassName, setSclassName] = useState("");
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const userState = useSelector(state => state.user);
     const { status, currentUser, response, error, tempDetails } = userState;
+    const adminID = currentUser._id;
+    const address = "Sclass";
 
-    const adminID = currentUser._id
-    const address = "Sclass"
-
-    const [loader, setLoader] = useState(false)
+    const [loader, setLoader] = useState(false);
     const [message, setMessage] = useState("");
     const [showPopup, setShowPopup] = useState(false);
 
@@ -31,36 +31,34 @@ const AddClass = () => {
     };
 
     const submitHandler = (event) => {
-        event.preventDefault()
-        setLoader(true)
-        dispatch(addStuff(fields, address))
+        event.preventDefault();
+        setLoader(true);
+        dispatch(addStuff(fields, address));
     };
 
     useEffect(() => {
         if (status === 'added' && tempDetails) {
-            navigate("/Admin/classes/class/" + tempDetails._id)
-            dispatch(underControl())
-            setLoader(false)
+            navigate("/Admin/classes/class/" + tempDetails._id);
+            dispatch(underControl());
+            setLoader(false);
         }
         else if (status === 'failed') {
-            setMessage(response)
-            setShowPopup(true)
-            setLoader(false)
+            setMessage(response);
+            setShowPopup(true);
+            setLoader(false);
         }
         else if (status === 'error') {
-            setMessage("Network Error")
-            setShowPopup(true)
-            setLoader(false)
+            setMessage("Network Error");
+            setShowPopup(true);
+            setLoader(false);
         }
     }, [status, navigate, error, response, dispatch, tempDetails]);
+
     return (
         <>
             <StyledContainer>
                 <StyledBox>
-                    <Stack sx={{
-                        alignItems: 'center',
-                        mb: 3
-                    }}>
+                    <Stack sx={{ alignItems: 'center', mb: 3 }}>
                         <img
                             src={Classroom}
                             alt="classroom"
@@ -97,10 +95,10 @@ const AddClass = () => {
             </StyledContainer>
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
         </>
-    )
-}
+    );
+};
 
-export default AddClass
+export default AddClass;
 
 const StyledContainer = styled(Box)`
   flex: 1 1 auto;
