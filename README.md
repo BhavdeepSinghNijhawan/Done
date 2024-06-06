@@ -1,7 +1,5 @@
 <h1 align="center">EduManage</h1>
 
-![image](https://github.com/BhavdeepSinghNijhawan/GrocerGo/assets/143419096/d50845e0-1243-45eb-96f3-b776a5f30311)
-
 ## TECHNICAL STACKS
 
 ### HTML
