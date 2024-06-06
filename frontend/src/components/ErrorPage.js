@@ -1,41 +1,101 @@
-//Author: Bhavdeep Singh Nijhawan
+// Author: Bhavdeep Singh Nijhawan
 
-import React from 'react';
-import styled from 'styled-components';
-const ErrorPage = () => {
+import React, { useState } from 'react';
+import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
+import { Settings, Logout } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+const AccountMenu = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const { currentRole, currentUser } = useSelector(state => state.user);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
-        <Container>
-            <Content>
-                <Heading>Oops, something went wrong</Heading>
-                <Text>
-                    We apologize for the inconvenience. Our website is currently experiencing technical difficulties. Please check back later.
-                </Text>
-            </Content>
-        </Container>
+        <>
+            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                <Tooltip title="Account settings">
+                    <IconButton
+                        onClick={handleClick}
+                        size="small"
+                        sx={{ ml: 2 }}
+                        aria-controls={open ? 'account-menu' : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? 'true' : undefined}
+                    >
+                        <Avatar sx={{ width: 32, height: 32 }}>
+                            {String(currentUser.name).charAt(0)}
+                        </Avatar>
+                    </IconButton>
+                </Tooltip>
+            </Box>
+            <Menu
+                anchorEl={anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={handleClose}
+                onClick={handleClose}
+                PaperProps={{
+                    elevation: 0,
+                    sx: styles.styledPaper,
+                }}
+                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            >
+                <MenuItem>
+                    <Avatar />
+                    <Link to={`/${currentRole}/profile`}>Profile</Link>
+                </MenuItem>
+                <Divider />
+                <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                        <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                </MenuItem>
+                <MenuItem>
+                    <ListItemIcon>
+                        <Logout fontSize="small" />
+                    </ListItemIcon>
+                    <Link to="/logout">Logout</Link>
+                </MenuItem>
+            </Menu>
+        </>
     );
 };
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: "Josefin Sans", sans-serif;
-  color: white;
-  background-image: url('https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
-`;
-const Content = styled.div`
-  max-width: 800px;
-  padding: 20px;
-  text-align: center;
-`;
-const Heading = styled.h1`
-  margin-bottom: 40px;
-  font-size: 32px;
-  font-weight: bold;
-  color: rgb(77, 9, 9);
-`;
-const Text = styled.p`
-  font-size: 18px;
-  line-height: 1.5;
-`;
-export default ErrorPage;
+
+export default AccountMenu;
+
+const styles = {
+    styledPaper: {
+        overflow: 'visible',
+        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+        mt: 1.5,
+        '& .MuiAvatar-root': {
+            width: 32,
+            height: 32,
+            ml: -0.5,
+            mr: 1,
+        },
+        '&:before': {
+            content: '""',
+            display: 'block',
+            position: 'absolute',
+            top: 0,
+            right: 14,
+            width: 10,
+            height: 10,
+            bgcolor: 'background.paper',
+            transform: 'translateY(-50%) rotate(45deg)',
+            zIndex: 0,
+        },
+    }
+};
