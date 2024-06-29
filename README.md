@@ -1,5 +1,11 @@
 <h1 align="center">EduManage</h1>
 
+![image](https://github.com/BhavdeepSinghNijhawan/EduManage/assets/143419096/266f8f32-a7a0-4319-9f01-33ac658799be)
+
+## LIVE URL
+
+- https://done-pi.vercel.app/
+
 ## TECHNICAL STACKS
 
 ### HTML
@@ -131,10 +137,6 @@ In this example, there are three icons provided: favicon.ico in multiple sizes, 
 6. theme_color: This specifies the theme color used for the web app. This color may be used by the browser or operating system to customize the UI. Here, it's set to "#000000" which represents black.
 
 7. background_color: This specifies the background color used for the web app. It's set to "#ffffff" which represents white.
-
-## LIVE URL
-
-- https://done-pi.vercel.app/
 
 ## CONTRIBUTOR
 
