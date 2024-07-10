@@ -17,7 +17,7 @@ EduManage is a comprehensive educational management system designed to streamlin
 
 ## LIVE URL
 
-- https://done-pi.vercel.app/
+- https://edumanagenijhawan.vercel.app/
 
 ## TECHNICAL STACKS
 
