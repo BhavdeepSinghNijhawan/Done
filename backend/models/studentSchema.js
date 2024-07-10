@@ -1,3 +1,5 @@
+// Author: Bhavdeep Singh Nijhawan
+
 const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema({
@@ -16,12 +18,12 @@ const studentSchema = new mongoose.Schema({
     sclassName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'sclass',
-        required: true,
+        required: true
     },
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin',
-        required: true,
+        required: true
     },
     role: {
         type: String,
@@ -31,7 +33,7 @@ const studentSchema = new mongoose.Schema({
         {
             subName: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'subject',
+                ref: 'subject'
             },
             marksObtained: {
                 type: Number,
@@ -39,22 +41,24 @@ const studentSchema = new mongoose.Schema({
             }
         }
     ],
-    attendance: [{
-        date: {
-            type: Date,
-            required: true
-        },
-        status: {
-            type: String,
-            enum: ['Present', 'Absent'],
-            required: true
-        },
-        subName: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'subject',
-            required: true
+    attendance: [
+        {
+            date: {
+                type: Date,
+                required: true
+            },
+            status: {
+                type: String,
+                enum: ['Present', 'Absent'],
+                required: true
+            },
+            subName: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'subject',
+                required: true
+            }
         }
-    }]
+    ]
 });
 
 module.exports = mongoose.model("student", studentSchema);
