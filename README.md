@@ -202,6 +202,40 @@ module.exports = mongoose.model("sclass", sclassSchema);
 ```
 - This line creates a Mongoose model named **`"sclass"`** using the **`sclassSchema`** and exports it. The model provides an interface for interacting with the **`sclass`** collection in the MongoDB database.
 
+#### backend/models/studentSchema.js
+
+```
+const mongoose = require('mongoose');
+```
+
+- This line imports the **`mongoose`** library, which is used to interact with MongoDB.
+
+```
+const studentSchema = new mongoose.Schema({ ... });
+```
+
+- This defines a new schema for the **`student`** collection.
+
+- **`name:`** A required field of type **`String`** that stores the student's name.
+- **`rollNum:`** A required field of type **`Number`** that stores the student's roll number.
+- **`password:`** A required field of type **`String`** that stores the student's password.
+- **`sclassName:`** A reference field that stores an **`ObjectId`** linking to the **`sclass`** collection. This is required.
+- **`school:`** A reference field that stores an **`ObjectId`** linking to the **`admin`** collection. This is required.
+- **`role:`** A field of type **`String`** that defaults to "Student".
+- **`examResult:`** An array of objects, each containing:
+  - **`subName:`** A reference field that stores an **`ObjectId`** linking to the **`subject`** collection.
+  - **`marksObtained:`** A field of type **`Number`** that defaults to 0.
+- **`attendance:`** An array of objects, each containing:
+  - **`date:`** A required field of type **`Date`** that stores the date of attendance.
+  - **`status:`** A required field of type **`String`** that stores the attendance status, with possible values 'Present' or 'Absent'.
+  - **`subName:`** A reference field that stores an **`ObjectId`** linking to the **`subject`** collection. This is required.
+
+```
+module.exports = mongoose.model("student", studentSchema);
+```
+
+- This line creates a Mongoose model named **`"student"`** using the **`studentSchema`** and exports it. The model provides an interface for interacting with the **`student`** collection in the MongoDB database.
+
 ## CONTRIBUTOR
 
 - [Bhavdeep Singh Nijhawan](https://www.linkedin.com/in/bhavdeep-singh-nijhawan-739634280)
