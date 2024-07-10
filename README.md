@@ -8,135 +8,150 @@
 
 ## TECHNICAL STACKS
 
-### HTML
+### Frontend
+
+### BACKEND
+
+#### backend/models/adminSchema.js
 
 ```
-<!DOCTYPE html>
+const mongoose = require("mongoose");
 ```
 
-This declaration specifies the document type and version of HTML being used.
+- This line imports the Mongoose library, which is an Object Data Modeling (ODM) library for MongoDB and Node.js. It provides a straightforward, schema-based solution to model your application data.
 
 ```
-<html lang="en">
-```
-
-This section contains meta-information about the HTML document, such as character encoding, viewport settings, and links to external resources like stylesheets and icons.
-
-```
-<head>
-```
-
-This section contains meta-information about the HTML document, such as character encoding, viewport settings, and links to external resources like stylesheets and icons.
-
-```
-<meta charset="utf-8" />
-```
-
-Specifies the character encoding of the document as **UTF-8**, which **supports a wide range of characters** from various languages.
-
-```
-<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-```
-Links to the favicon (website icon) that appears in the browser tab or bookmarks bar. The **%PUBLIC_URL%** placeholder gets replaced with the actual public URL of the application during the build process.
-
-```
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-```
-
-Sets the viewport properties to ensure proper rendering and scaling on different devices and screen sizes.
-
-```
-<meta name="theme-color" content="#000000" />
-```
-
-Specifies the theme color of the web application. This color may be used by browsers or operating systems to customize the UI.
-
-```
-<meta name="description" content="Web site created using create-react-app" />
-```
-
-Provides a brief description of the web application for search engines and social media sharing.
-
-```
-<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-```
-
-Similar to the favicon, this links to an icon for Apple devices that support touch gestures.
-
-```
-<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-```
-
-Links to the web app manifest file, which provides metadata used when the web app is installed on a user's device or desktop.
-
-```
-<title>React App</title>
-```
-
-Sets the title of the web page displayed in the browser tab.
-
-```
-<body>
-```
-
-This section contains the main content of the HTML document, including any visible elements such as text, images, and interactive components.
-
-```
-<noscript>You need to enable JavaScript to run this app.</noscript>
-```
-
-Displays a message if JavaScript is disabled in the browser, informing the user that the application requires JavaScript to function properly.
-
-```
-<div id="root"></div>
-```
-
-This empty div element serves as the mounting point for the React application. React components will be rendered inside this div.
-
-```
-"short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+const adminSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
     },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+    email: {
+        type: String,
+        unique: true,
+        required: true,
     },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+    password: {
+        type: String,
+        required: true,
+    },
+    role: {
+        type: String,
+        default: "Admin"
+    },
+    schoolName: {
+        type: String,
+        unique: true,
+        required: true
     }
-  ],
+});
 ```
 
-1. short_name: This is a short name for the web app, typically used on the user's home screen, launcher, or other places where space is limited. In this case, it's set to "React App".
-2. name: This is the full name of the web app, which may be displayed in the app's store listing or other contexts where more space is available. Here, it's set to "Create React App Sample".
-3. icons: This is an array of objects specifying the icons used for the web app. Each object contains the following properties:
-- src: The path to the icon file.
-- sizes: The sizes of the icon in pixels.
-- type: The MIME type of the icon file.
-In this example, there are three icons provided: favicon.ico in multiple sizes, logo192.png (192x192 pixels), and logo512.png (512x512 pixels).
+- This defines a schema for the **`admin`** collection in MongoDB. A schema in Mongoose is a way to structure documents within a collection.
+
+1. **`name:`** A required string field.
+2. **`email:`** A required and unique string field. Each admin must have a unique email.
+3. **`password:`** A required string field.
+4. **`role:`** A string field with a default value of "Admin". This means if no role is provided, it will default to "Admin".
+5. **`schoolName:`** A required and unique string field. Each admin must have a unique school name.
 
 ```
-"start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+module.exports = mongoose.model("admin", adminSchema);
 ```
 
-4. start_url: This specifies the URL where the web app should start when launched. In this case, it's set to "." which means the root of the application.
+- This line exports the model based on the **`adminSchema`**. A model in Mongoose is a wrapper for the schema, providing an interface to the database for CRUD operations.
 
-5. display: This specifies how the web app should be displayed when launched. Possible values include "fullscreen", "standalone", "minimal-ui", and "browser". Here, it's set to "standalone" which means the web app will open in its own window without any browser elements.
+#### backend/models/complainSchema.js
 
-6. theme_color: This specifies the theme color used for the web app. This color may be used by the browser or operating system to customize the UI. Here, it's set to "#000000" which represents black.
+```
+const mongoose = require('mongoose');
+```
 
-7. background_color: This specifies the background color used for the web app. It's set to "#ffffff" which represents white.
+- This line imports the Mongoose library, which is used for interacting with MongoDB in an object-oriented manner.
+
+```
+const complainSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'student',
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    complaint: {
+        type: String,
+        required: true
+    },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admin',
+        required: true
+    }
+});
+```
+
+- This defines a schema for the **`complain`** collection in MongoDB. A schema in Mongoose defines the structure of the documents within a collection.
+
+1. **`user:`** A required field that stores the ID of a **`student`**. It references the **`_id`** field in the student collection.
+2. **`date:`** A required date field to store the date of the complaint.
+3. **`complaint:`** A required string field to store the text of the complaint.
+4. **`school:`** A required field that stores the ID of an **`admin`**. It references the **`_id`** field in the admin collection.
+
+```
+module.exports = mongoose.model("complain", complainSchema);
+```
+
+- This line exports the model based on the **`complainSchema`**. A model in Mongoose is a wrapper for the schema, providing an interface to the database for CRUD operations.
+
+#### backend/models/noticeSchema.js
+
+```
+const mongoose = require("mongoose");
+```
+
+- const mongoose = require("mongoose");
+
+```
+const noticeSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    details: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admin'
+    }
+}, { timestamps: true });
+```
+
+- This defines a schema for the **`notice`** collection in MongoDB. A schema in Mongoose defines the structure of the documents within a collection.
+
+1. **`title:`** A required string field to store the title of the notice.
+2. **`details:`** A required string field to store the details of the notice.
+3. **`date:`** A required date field to store the date of the notice.
+4. **`school:`** An optional field that stores the ID of an **`admin`**. It references the **`_id`** field in the **`admin`** collection.
+
+```
+{ timestamps: true }
+```
+
+- This enables automatic creation of **`createdAt`** and **`updatedAt`** fields in the documents. Mongoose will automatically manage these fields.
+
+```
+module.exports = mongoose.model("notice", noticeSchema);
+```
+
+- This line exports the model based on the **`noticeSchema`**. A model in Mongoose is a wrapper for the schema, providing an interface to the database for CRUD operations.
 
 ## CONTRIBUTOR
 
