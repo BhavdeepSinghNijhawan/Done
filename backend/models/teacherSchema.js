@@ -1,18 +1,21 @@
-const mongoose = require("mongoose")
+// Author: Bhavdeep Singh Nijhawan
 
+const mongoose = require("mongoose");
+
+// Define the schema for a teacher
 const teacherSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         unique: true,
-        required: true,
+        required: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
     role: {
         type: String,
@@ -21,16 +24,16 @@ const teacherSchema = new mongoose.Schema({
     school: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'admin',
-        required: true,
+        required: true
     },
     teachSubject: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'subject',
+        ref: 'subject'
     },
     teachSclass: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'sclass',
-        required: true,
+        required: true
     },
     attendance: [{
         date: {
@@ -38,12 +41,13 @@ const teacherSchema = new mongoose.Schema({
             required: true
         },
         presentCount: {
-            type: String,
+            type: String
         },
         absentCount: {
-            type: String,
+            type: String
         }
     }]
 }, { timestamps: true });
 
-module.exports = mongoose.model("teacher", teacherSchema)
+// Export the model for use in other parts of the application
+module.exports = mongoose.model("teacher", teacherSchema);
