@@ -236,6 +236,35 @@ module.exports = mongoose.model("student", studentSchema);
 
 - This line creates a Mongoose model named **`"student"`** using the **`studentSchema`** and exports it. The model provides an interface for interacting with the **`student`** collection in the MongoDB database.
 
+#### backend/models/subjectSchema.js
+
+```
+const mongoose = require("mongoose");
+```
+
+- This line imports the **`mongoose`** library, which is used to interact with MongoDB.
+
+```
+const subjectSchema = new mongoose.Schema({ ... }, { timestamps: true });
+```
+
+- This defines a new schema for the **`subject`** collection with timestamps enabled. Timestamps automatically add **`createdAt`** and **`updatedAt`** fields to the schema.
+
+- **`subName:`** A required field of type **`String`** that stores the subject name.
+- **`subCode:`** A required field of type **`String`** that stores the subject code.
+- **`sessions:`** A required field of type **`String`** that stores the number of sessions.
+- **`sclassName:`** A reference field that stores an **`ObjectId`** linking to the **`sclass`** collection. This is required.
+- **`school:`** A reference field that stores an **`ObjectId`** linking to the **`admin`** collection.
+- **`teacher:`** A reference field that stores an **`ObjectId`** linking to the **`teacher`** collection.
+
+```
+module.exports = mongoose.model("subject", subjectSchema);
+```
+
+- This line creates a Mongoose model named **`"subject"`** using the **`subjectSchema`** and exports it. The model provides an interface for interacting with the **`subject`** collection in the MongoDB database.
+
+
+
 ## CONTRIBUTOR
 
 - [Bhavdeep Singh Nijhawan](https://www.linkedin.com/in/bhavdeep-singh-nijhawan-739634280)
