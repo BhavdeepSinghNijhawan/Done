@@ -1,6 +1,19 @@
 <h1 align="center">EduManage</h1>
 
-![image](https://github.com/BhavdeepSinghNijhawan/EduManage/assets/143419096/266f8f32-a7a0-4319-9f01-33ac658799be)
+<div class="center">
+        <img src="https://github.com/BhavdeepSinghNijhawan/EduManage/assets/143419096/266f8f32-a7a0-4319-9f01-33ac658799be" alt="EduManage Logo">
+    </div>
+
+EduManage is a comprehensive educational management system designed to streamline administrative tasks, enhance student engagement, and facilitate effective communication between teachers, students, and parents. EduManage is a robust educational management system that provides a centralized platform for managing various aspects of educational institutions. Its user-friendly interface and comprehensive features make it an ideal solution for schools, colleges, and universities.
+
+**Features:**
+
+1. User authentication and authorization for secure access
+2. Course management system for creating, editing, and managing courses
+3. Student management system for tracking student progress and performance
+4. Grade management system for recording and calculating grades
+5. Attendance management system for tracking student attendance
+6. Communication system for sending notifications and announcements to students, teachers, and parents
 
 ## LIVE URL
 
