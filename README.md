@@ -263,7 +263,117 @@ module.exports = mongoose.model("subject", subjectSchema);
 
 - This line creates a Mongoose model named **`"subject"`** using the **`subjectSchema`** and exports it. The model provides an interface for interacting with the **`subject`** collection in the MongoDB database.
 
+#### backend/models/teacherSchema.js
 
+```
+const mongoose = require("mongoose");
+```
+
+- This line imports the **`mongoose`** library, which is used to interact with MongoDB.
+
+```
+const teacherSchema = new mongoose.Schema({ ... }, { timestamps: true });
+```
+
+- This defines a new schema for the **`teacher`** collection with timestamps enabled. Timestamps automatically add **`createdAt`** and **`updatedAt`** fields to the schema.
+
+```
+name: {
+    type: String,
+    required: true
+},
+```
+
+- **`name`** is a required field of type **`String`** that stores the teacher's name.
+
+```
+email: {
+    type: String,
+    unique: true,
+    required: true
+},
+```
+
+- **`email`** is a required field of type **`String`** that stores the teacher's email address. It must be unique.
+
+```
+password: {
+    type: String,
+    required: true
+},
+```
+
+- **`password`** is a required field of type **`String`** that stores the teacher's password.
+
+```
+role: {
+    type: String,
+    default: "Teacher"
+},
+```
+
+- **`role`** is a field of type **`String`** that stores the teacher's role, defaulting to "Teacher".
+
+```
+school: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'admin',
+    required: true
+},
+```
+
+- **`school`** is a reference field that stores an **`ObjectId`** linking to the **`admin`** collection, which represents the school. This field is required.
+
+```
+teachSubject: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'subject'
+},
+```
+
+- **`teachSubject`** is a reference field that stores an **`ObjectId`** linking to the **`subject`** collection.
+
+```
+teachSclass: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'sclass',
+    required: true
+},
+```
+
+- **`teachSclass`** is a reference field that stores an **`ObjectId`** linking to the **`sclass`** collection. This field is required.
+
+```
+attendance: [{
+    date: {
+        type: Date,
+        required: true
+    },
+    presentCount: {
+        type: String
+    },
+    absentCount: {
+        type: String
+    }
+}]
+```
+
+- **`attendance`** is an array of objects, where each object stores:
+  - **`date:`** A required field of type **`Date`** that stores the attendance date.
+  - **`presentCount:`** A field of type **`String`** that stores the count of present students.
+  - **`absentCount:`** A field of type **`String`** that stores the count of absent students.
+
+```
+{ timestamps: true }
+```
+
+- This option adds **`createdAt`** and **`updatedAt`** fields to the schema automatically.
+
+```
+module.exports = mongoose.model("teacher", teacherSchema);
+```
+
+- This line creates a Mongoose model named **`"teacher"`** using the **`teacherSchema`** and exports it. The model provides an interface for interacting with the **`teacher`** collection in the MongoDB database.
 
 ## CONTRIBUTOR
 
