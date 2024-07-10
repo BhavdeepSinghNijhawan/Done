@@ -166,6 +166,42 @@ module.exports = mongoose.model("notice", noticeSchema);
 
 - This line exports the model based on the **`noticeSchema`**. A model in Mongoose is a wrapper for the schema, providing an interface to the database for CRUD operations.
 
+#### backend/models/sclassSchema.js
+
+```
+const mongoose = require("mongoose");
+```
+
+- This line imports the **`mongoose library`**, which is used to interact with MongoDB.
+
+```
+const sclassSchema = new mongoose.Schema({
+    sclassName: {
+        type: String,
+        required: true,  // sclassName is a required field and must be of type String
+    },
+    school: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'admin',  // school references the admin collection using ObjectId
+    },
+},
+```
+
+- This defines a new schema for the **`sclass collection`**. A schema is a blueprint for the structure of documents within a MongoDB collection.
+- sclassName: A required field of type **`String`** that stores the name of the class.
+- school: A reference field that stores an **`ObjectId`** linking to the **`admin`** collection. This creates a relationship between the **`sclass`** and **`admin`** collections.
+
+```
+{ timestamps: true }
+```
+
+This option adds two fields to the schema: **`createdAt`** and **`updatedAt`**, which automatically record the creation and last update times of the documents.
+
+```
+module.exports = mongoose.model("sclass", sclassSchema);
+```
+- This line creates a Mongoose model named **`"sclass"`** using the **`sclassSchema`** and exports it. The model provides an interface for interacting with the **`sclass`** collection in the MongoDB database.
+
 ## CONTRIBUTOR
 
 - [Bhavdeep Singh Nijhawan](https://www.linkedin.com/in/bhavdeep-singh-nijhawan-739634280)
