@@ -375,6 +375,115 @@ module.exports = mongoose.model("teacher", teacherSchema);
 
 - This line creates a Mongoose model named **`"teacher"`** using the **`teacherSchema`** and exports it. The model provides an interface for interacting with the **`teacher`** collection in the MongoDB database.
 
+#### backend/routes/route.js
+
+```
+const router = require('express').Router();
+```
+
+- This line imports the Router from the Express framework and assigns it to the **`router`** constant. This router will be used to define routes for different endpoints.
+
+```
+const { adminRegister, adminLogIn, getAdminDetail} = require('../controllers/admin-controller.js');
+const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class-controller.js');
+const { complainCreate, complainList } = require('../controllers/complain-controller.js');
+const { noticeCreate, noticeList, deleteNotices, deleteNotice, updateNotice } = require('../controllers/notice-controller.js');
+const {
+    studentRegister,
+    studentLogIn,
+    getStudents,
+    getStudentDetail,
+    deleteStudents,
+    deleteStudent,
+    updateStudent,
+    studentAttendance,
+    deleteStudentsByClass,
+    updateExamResult,
+    clearAllStudentsAttendanceBySubject,
+    clearAllStudentsAttendance,
+    removeStudentAttendanceBySubject,
+    removeStudentAttendance } = require('../controllers/student_controller.js');
+const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
+const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
+```
+
+- These lines import specific functions from various controller files. Each controller file handles specific functionality related to different entities such as **`admin`**, **`class`**, **`complain`**, **`notice`**, **`student`**, **`subject`**, and **`teacher`**.
+
+```
+// Admin
+router.post('/AdminReg', adminRegister);
+router.post('/AdminLogin', adminLogIn);
+router.get("/Admin/:id", getAdminDetail);
+```
+
+- **POST /AdminReg:** Registers a new admin using the **`adminRegister`** function.
+- **POST /AdminLogin:** Logs in an admin using the **`adminLogIn`** function.
+- **GET /Admin/:** Retrieves admin details using the **`getAdminDetail`** function.
+
+```
+// Student
+router.post('/StudentReg', studentRegister);
+router.post('/StudentLogin', studentLogIn);
+router.get("/Students/:id", getStudents);
+router.get("/Student/:id", getStudentDetail);
+router.delete("/Students/:id", deleteStudents);
+router.delete("/StudentsClass/:id", deleteStudentsByClass);
+router.delete("/Student/:id", deleteStudent);
+router.put("/Student/:id", updateStudent);
+router.put('/UpdateExamResult/:id', updateExamResult);
+router.put('/StudentAttendance/:id', studentAttendance);
+router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
+router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
+router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
+router.put('/RemoveStudentAtten/:id', removeStudentAttendance);
+```
+
+- **POST /StudentReg:** Registers a new student using the **`studentRegister`** function.
+- **POST /StudentLogin:** Logs in a student using the **`studentLogIn`** function.
+- **GET /Students/:** Retrieves a list of students (possibly by class or another criteria) using the **`getStudents`** function.
+- **GET /Student/:** Retrieves student details using the **`getStudentDetail`** function.
+- **DELETE /Students/:** Deletes multiple students using the **`deleteStudents`** function.
+- **DELETE /StudentsClass/:** Deletes students by class using the **`deleteStudentsByClass`** function.
+- **DELETE /Student/:** Deletes a specific student using the **`deleteStudent`** function.
+- **PUT /Student/:** Updates a student's details using the **`updateStudent`** function.
+- **PUT /UpdateExamResult/:** Updates exam results for a student using the **`updateExamResult`** function.
+- **PUT /StudentAttendance/:** Updates student attendance using the **`studentAttendance`** function.
+- **PUT /RemoveAllStudentsSubAtten/:** Clears all students' attendance for a specific subject using the **`clearAllStudentsAttendanceBySubject`** function.
+- **PUT /RemoveAllStudentsAtten/:** Clears all students' attendance using the **`clearAllStudentsAttendance`** function.
+- **PUT /RemoveStudentSubAtten/:** Removes a student's attendance for a specific subject using the **`removeStudentAttendanceBySubject`** function.
+- **PUT /RemoveStudentAtten/:** Removes a student's attendance using the **`removeStudentAttendance`** function.
+
+```
+// Teacher
+router.post('/TeacherReg', teacherRegister);
+router.post('/TeacherLogin', teacherLogIn);
+router.get("/Teachers/:id", getTeachers);
+router.get("/Teacher/:id", getTeacherDetail);
+router.delete("/Teachers/:id", deleteTeachers);
+router.delete("/TeachersClass/:id", deleteTeachersByClass);
+router.delete("/Teacher/:id", deleteTeacher);
+router.put("/TeacherSubject", updateTeacherSubject);
+router.post('/TeacherAttendance/:id', teacherAttendance);
+```
+
+- **POST /TeacherReg:** Registers a new teacher using the **`teacherRegister`** function.
+- **POST /TeacherLogin:** Logs in a teacher using the **`teacherLogIn`** function.
+- **GET /Teachers/:** Retrieves a list of teachers (possibly by class or another criteria) using the **`getTeachers`** function.
+- **GET /Teacher/:** Retrieves teacher details using the **`getTeacherDetail`** function.
+- **DELETE /Teachers/:** Deletes multiple teachers using the **`deleteTeachers`** function.
+- **DELETE /TeachersClass/:** Deletes teachers by class using the **`deleteTeachersByClass`** function.
+- **DELETE /Teacher/:** Deletes a specific teacher using the **`deleteTeacher`** function.
+- **PUT /TeacherSubject:** Updates a teacher's subject using the **`updateTeacherSubject`** function.
+- **POST /TeacherAttendance/:** Updates teacher attendance using the **`teacherAttendance`** function.
+
+```
+// Notice
+router.post('/NoticeCreate', noticeCreate);
+router.get('/NoticeList/:id', noticeList);
+router.delete("/Notices/:id", deleteNotices);
+router.delete("/Notice/:id", deleteNotice);
+router.put("/Notice/:id", updateNotice);
+```
 ## CONTRIBUTOR
 
 - [Bhavdeep Singh Nijhawan](https://www.linkedin.com/in/bhavdeep-singh-nijhawan-739634280)
