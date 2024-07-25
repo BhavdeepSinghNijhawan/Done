@@ -484,6 +484,83 @@ router.delete("/Notices/:id", deleteNotices);
 router.delete("/Notice/:id", deleteNotice);
 router.put("/Notice/:id", updateNotice);
 ```
+
+#### backend/index.js
+
+```
+const express = require("express")
+const cors = require("cors")
+const mongoose = require("mongoose")
+const dotenv = require("dotenv")
+// const bodyParser = require("body-parser")
+const app = express()
+const Routes = require("./routes/route.js")
+```
+
+- const express = require("express"): This imports the Express library, which is a web application framework for Node.js. It helps in creating a server and handling HTTP requests.
+- const cors = require("cors"): This imports the CORS (Cross-Origin Resource Sharing) middleware, which allows you to specify which domains are permitted to access resources on your server.
+- const mongoose = require("mongoose"): This imports Mongoose, an ODM (Object Data Modeling) library for MongoDB and Node.js, which provides a schema-based solution to model your application data.
+- const dotenv = require("dotenv"): This imports the dotenv library, which loads environment variables from a .env file into process.env, helping to keep sensitive information like database credentials out of your codebase.
+- const bodyParser = require("body-parser"): This line is commented out. It would import the bodyParser middleware if uncommented. BodyParser is used to parse incoming request bodies in a middleware before your handlers, available under req.body.
+- const app = express(): This creates an Express application instance, which will be used to define routes, middleware, and start the server.
+- const Routes = require("./routes/route.js"): This imports the routes defined in the ./routes/route.js file. It is assumed that this file contains route handlers for your application.
+
+```
+const PORT = process.env.PORT || 5000
+```
+
+- const PORT = process.env.PORT || 5000: This sets the port number for the server. It checks if there's a PORT environment variable set; if not, it defaults to port 5000.
+
+```
+dotenv.config();
+```
+
+- dotenv.config();: This initializes dotenv to load environment variables from the .env file into process.env.
+
+```
+app.use(bodyParser.json({ limit: '10mb', extended: true }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
+```
+
+- // app.use(bodyParser.json({ limit: '10mb', extended: true })): These lines are commented out. If uncommented, they would use the bodyParser middleware to parse JSON request bodies, with a limit of 10 MB.
+- // app.use(bodyParser.urlencoded({ limit: '10mb', extended: true })): Similarly, this would use bodyParser to parse URL-encoded request bodies with a 10 MB limit.
+
+```
+app.use(express.json({ limit: '10mb' }))
+app.use(cors())
+```
+
+- app.use(express.json({ limit: '10mb' })): This middleware parses incoming requests with JSON payloads and sets a maximum request body size of 10 MB.
+- app.use(cors()): This enables CORS for all routes, allowing resources to be accessed from different origins.
+
+```
+mongoose
+    .connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(console.log("Connected to MongoDB"))
+    .catch((err) => console.log("NOT CONNECTED TO NETWORK", err))
+```
+
+- mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }): This connects to a MongoDB database using the URL specified in the MONGO_URL environment variable. useNewUrlParser and useUnifiedTopology are options to use the new connection string parser and the unified topology engine, respectively.
+- .then(console.log("Connected to MongoDB")): If the connection is successful, this logs "Connected to MongoDB" to the console.
+- .catch((err) => console.log("NOT CONNECTED TO NETWORK", err)): If the connection fails, this logs an error message along with the error details.
+
+```
+app.use('/', Routes);
+```
+
+- app.use('/', Routes);: This sets up the middleware for handling routes. All routes defined in the Routes module will be accessible from the root path.
+
+```
+app.listen(PORT, () => {
+    console.log(`Server started at port no. ${PORT}`)
+})
+```
+
+- app.listen(PORT, () => { console.log(Server started at port no. ${PORT}) }): This starts the server and listens for incoming requests on the specified port. It logs a message to the console indicating that the server is running and listening on the specified port.
+
 ## CONTRIBUTOR
 
 - [Bhavdeep Singh Nijhawan](https://www.linkedin.com/in/bhavdeep-singh-nijhawan-739634280)
