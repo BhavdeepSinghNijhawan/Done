@@ -21,7 +21,74 @@ EduManage is a comprehensive educational management system designed to streamlin
 
 ## TECHNICAL STACKS
 
-### Frontend
+### FRONTEND
+
+#### frontend/src/components/AccountMenu.js
+
+```
+import React, { useState } from 'react';
+```
+
+- Import React and the useState hook from React. **`useState`** is used for managing component state.
+
+```
+import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from '@mui/material';
+```
+
+Import various Material-UI components used for building the UI:
+- Box: A layout component that provides a flexible container.
+- Avatar: Displays user profile images or initials.
+- Menu: Displays a list of actions in a dropdown.
+- MenuItem: Represents an individual item in the Menu.
+- ListItemIcon: Wraps icons within MenuItem.
+- Divider: A visual separator between menu items.
+- IconButton: A button with an icon, used to trigger actions.
+- Tooltip: Displays additional information when hovering over an element.
+- import { Settings, Logout } from '@mui/icons-material';: Import specific icons for settings and logout.
+- import { Link } from 'react-router-dom';: Import Link from react-router-dom for navigation.
+- import { useSelector } from 'react-redux';: Import useSelector from react-redux to access the Redux store's state.
+Component Definition:
+
+const AccountMenu = () => {: Define a functional component named AccountMenu.
+State and Variables:
+
+const [anchorEl, setAnchorEl] = useState(null);: Create state anchorEl to keep track of the menu's anchor element, initially set to null.
+const open = Boolean(anchorEl);: Convert anchorEl to a boolean to determine if the menu should be open based on its value.
+const { currentRole, currentUser } = useSelector(state => state.user);: Use useSelector to extract currentRole and currentUser from the Redux store.
+Event Handlers:
+
+const handleClick = (event) => { setAnchorEl(event.currentTarget); };: Function to open the menu by setting anchorEl to the element that was clicked.
+const handleClose = () => { setAnchorEl(null); };: Function to close the menu by setting anchorEl to null.
+JSX Render:
+
+return ( ... );: Return the JSX to render the component.
+<Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>: Create a flex container to align items centrally.
+<Tooltip title="Account settings">: Add a tooltip that shows "Account settings" on hover.
+<IconButton onClick={handleClick} size="small" sx={{ ml: 2 }} ... >: Create an icon button that opens the menu when clicked.
+<Avatar sx={{ width: 32, height: 32 }}>: Display an avatar with the user’s initials.
+{String(currentUser.name).charAt(0)}: Display the first character of the user's name.
+<Menu anchorEl={anchorEl} id="account-menu" open={open} onClose={handleClose} ... >: Define the dropdown menu with various props:
+anchorEl: The element to which the menu is anchored.
+id="account-menu": Unique identifier for the menu.
+open={open}: Control if the menu is open.
+onClose={handleClose}: Function to call when the menu is closed.
+PaperProps: Custom properties for the menu's paper element.
+transformOrigin and anchorOrigin: Define the positioning of the menu.
+<MenuItem>: Define menu items for navigation and actions:
+<Avatar />: Placeholder for the user's avatar in the menu.
+<Link to={/${currentRole}/profile}>Profile</Link>: Link to the user's profile page.
+<Divider />: Visual separator between menu items.
+<MenuItem onClick={handleClose}>: Menu item for settings with an icon and label.
+<ListItemIcon><Settings fontSize="small" /></ListItemIcon>: Icon inside the menu item.
+<MenuItem>: Menu item for logout with an icon and link.
+<ListItemIcon><Logout fontSize="small" /></ListItemIcon>: Logout icon.
+Export:
+
+export default AccountMenu;: Export the AccountMenu component as the default export.
+Styles:
+
+const styles = { ... };: Define custom styles for the menu:
+styledPaper: Style for the menu paper element, including shadow effects, margin-top, avatar styling, and a triangular indicator.
 
 ### BACKEND
 
