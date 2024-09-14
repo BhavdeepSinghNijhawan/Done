@@ -36,17 +36,18 @@ import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip
 ```
 
 Import various Material-UI components used for building the UI:
-- Box: A layout component that provides a flexible container.
-- Avatar: Displays user profile images or initials.
-- Menu: Displays a list of actions in a dropdown.
-- MenuItem: Represents an individual item in the Menu.
-- ListItemIcon: Wraps icons within MenuItem.
-- Divider: A visual separator between menu items.
-- IconButton: A button with an icon, used to trigger actions.
-- Tooltip: Displays additional information when hovering over an element.
-- import { Settings, Logout } from '@mui/icons-material';: Import specific icons for settings and logout.
-- import { Link } from 'react-router-dom';: Import Link from react-router-dom for navigation.
-- import { useSelector } from 'react-redux';: Import useSelector from react-redux to access the Redux store's state.
+- **Box:** A layout component that provides a flexible container.
+- **Avatar:** Displays user profile images or initials.
+- **Menu:** Displays a list of actions in a dropdown.
+- **MenuItem:** Represents an individual item in the Menu.
+- **ListItemIcon:** Wraps icons within MenuItem.
+- **Divider:** A visual separator between menu items.
+- **IconButton:** A button with an icon, used to trigger actions.
+- **Tooltip:** Displays additional information when hovering over an element.
+- `import { Settings, Logout } from '@mui/icons-material';`: Import specific icons for settings and logout.
+- `import { Link } from 'react-router-dom';`: Import Link from react-router-dom for navigation.
+- `import { useSelector } from 'react-redux';`: Import useSelector from react-redux to access the Redux store's state.
+
 Component Definition:
 
 const AccountMenu = () => {: Define a functional component named AccountMenu.
